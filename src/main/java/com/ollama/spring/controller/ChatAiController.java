@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
 @RestController
-@RequestMapping("/api/ai")
+@RequestMapping("/llm")
 public class ChatAiController {
 
     @Autowired
     private ChatAIService chatAIService;
 
     @GetMapping("/prompt")
-    public String askToAI(@RequestParam(value = "question") String question) {
-        return chatAIService.askToDeepSeekAI(question);
+    public String askLlm(@RequestParam(value = "question") String question) {
+        return chatAIService.askToLlmAI(question);
     }
 
     @GetMapping("/prompt/stream")
-    public Flux<String> askToAIWithStream(@RequestParam(value = "question") String question) {
-        return chatAIService.askToDeepSeekAIWithStream(question);
+    public Flux<String> askLlmWithStream(@RequestParam(value = "question") String question) {
+        return chatAIService.askToLlmAIWithStream(question);
     }
 }

@@ -13,7 +13,7 @@ public class ChatAIService {
         this.chatClient = chatClientBuilder.build();
     }
 
-    public String askToDeepSeekAI(String question){
+    public String askToLlmAI(String question){
         return chatClient.prompt(question)
                 .system("""
                 You are an expert chef and must only respond to recipe-related questions.
@@ -23,7 +23,7 @@ public class ChatAIService {
                 .call().content();
     }
 
-    public Flux<String> askToDeepSeekAIWithStream(String question) {
+    public Flux<String> askToLlmAIWithStream(String question) {
         if (!isFoodRelated(question)) {
             return Flux.just("Sorry, I can only help with cooking and recipes.");
         }

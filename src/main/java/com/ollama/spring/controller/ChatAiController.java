@@ -1,6 +1,6 @@
 package com.ollama.spring.controller;
 
-import com.ollama.spring.service.ChatAIService;
+import com.ollama.spring.service.ChatAiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,18 +10,18 @@ import reactor.core.publisher.Flux;
 
 @RestController
 @RequestMapping("/llm")
-public class ChatAiController {
+public class ChatAiController{
 
     @Autowired
-    private ChatAIService chatAIService;
+    private ChatAiService chatAiService;
 
     @GetMapping("/prompt")
     public String askLlm(@RequestParam(value = "question") String question) {
-        return chatAIService.askToLlmAI(question);
+        return chatAiService.askToLlmAI(question);
     }
 
     @GetMapping("/prompt/stream")
     public Flux<String> askLlmWithStream(@RequestParam(value = "question") String question) {
-        return chatAIService.askToLlmAIWithStream(question);
+        return chatAiService.askToLlmAIWithStream(question);
     }
 }
